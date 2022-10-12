@@ -1,35 +1,63 @@
 package com.til.autocommit.service;
 
+import com.til.autocommit.domain.Tistory;
 import org.springframework.stereotype.Service;
 
+import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TistoryApi {
 
-    private static String tistoryUrl = "https://www.tistory.com/apis/post/list?";
-    private static String access_token = TistoryApikey.TOKEN.toString();
-    private static String output = "output-type";
-    private static String blogName = "blog-name";
-    private static int page = 1;
+    //yml
+    //tistoryUrl = "https://www.tistory.com/apis/post/list?";
+    //볼트??????????? Vault
+    //db.........
+    private static final String TISTORY_URL = "https://www.tistory.com/apis/post/list?";
+    private static final String ACCESS_TOKEN = TistoryApiKey.TOKEN.toString();
+    private static final String OUTPUT = "json";
+    private static final String BLOG_NAME = "jiwon709";
+    private static final int PAGE = 1;
 
-    public static List<String> tistoryApiResult(){
-        List<String> resultList = new ArrayList<>();
+    public static String tistoryApiResult() throws IOException {
+        StringBuilder result = new StringBuilder();
 
-        String url = tistoryUrl;
-        String token = access_token;
-        String outType = output;
-        String blog = blogName;
-        int pageNum = page;
+        String connectUrl = TISTORY_URL;
+        String token = ACCESS_TOKEN;
+        String outType = OUTPUT;
+        String blog = BLOG_NAME;
+        int pageNum = PAGE;
 
-        //to-do api 호출시도
+        // to-do api 호출시도
+        // url . token & outType & blog & pageNum
 
-        return resultList;
+        URL url = new URL(connectUrl + token + outType + blog + pageNum);
+        HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+        urlConnection.setRequestMethod("GET");
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(),"UTF-8"));
+
+        result.append(br.readLine());
+
+        urlConnection.disconnect();
+
+        Tistory tistory = Tistory.builder()
+                .postUrl("")
+                .date("")
+                .title("")
+                .build();
+
+        return result.toString();
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        System.out.println(ACCESS_TOKEN);
         System.out.println(tistoryApiResult());
     }
 }
