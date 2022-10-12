@@ -1,6 +1,7 @@
 package com.til.autocommit.service;
 
 import com.til.autocommit.domain.Tistory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -19,7 +20,8 @@ public class TistoryApi {
     //볼트??????????? Vault
     //db.........
     private static final String TISTORY_URL = "https://www.tistory.com/apis/post/list?";
-    private static final String ACCESS_TOKEN = TistoryApiKey.TOKEN.toString();
+    @Value("${tistory.token}")
+    private static String ACCESS_TOKEN;
     private static final String OUTPUT = "json";
     private static final String BLOG_NAME = "jiwon709";
     private static final int PAGE = 1;
@@ -36,7 +38,7 @@ public class TistoryApi {
         // to-do api 호출시도
         // url . token & outType & blog & pageNum
 
-        URL url = new URL(connectUrl + token + outType + blog + pageNum);
+        URL url = new URL(connectUrl + "access_token=" + token + "&output=" + outType + "&blogName=" + blog + "&page=" + pageNum);
         HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
         urlConnection.setRequestMethod("GET");
 
