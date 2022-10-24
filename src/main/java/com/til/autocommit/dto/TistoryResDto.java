@@ -2,22 +2,38 @@ package com.til.autocommit.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
 public class TistoryResDto {
-    String status;
-    TistoryItem item;
+
+    //응답 item
+    //https://tistory.github.io/document-tistory-apis/apis/v1/post/list.html
+    private InnerTistory tistory;
 
     @Getter
-    public static class TistoryItem{
-        List<TistoryPost> posts;
+    public static class InnerTistory{
+        private String status;
+        private TistoryItem item;
+        @Getter
+        public static class TistoryItem{
+            private List<TistoryPost> posts;
+            private String url;
+            private int page;
+            private int count;
+            private int totalCount;
 
-        public static class TistoryPost{
-            String id;
+            @Getter
+            public static class TistoryPost {
+                String id;
+                String title;
+                String postUrl;
+                int visibility;
+                String categoryId;
+                String date;
+            }
         }
     }
 
