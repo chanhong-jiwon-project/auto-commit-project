@@ -59,11 +59,11 @@ public class TistoryApi {
         HttpEntity<?> entity = new HttpEntity<>(headers);
         RestTemplate restTemplate = new RestTemplate();
         //꿀꿀꿀꿀꿀꿀꿀꿀 -oo-
-//        HttpEntity<Map> response = restTemplate.exchange(
+//        HttpEntity<String> response = restTemplate.exchange(
 //                builder.toUriString(),
 //                HttpMethod.GET,
 //                entity,
-//                Map.class);
+//                String.class);
 //
         HttpEntity<TistoryResDto> response = restTemplate.exchange(
                 builder.toUriString(),
@@ -71,14 +71,21 @@ public class TistoryApi {
                 entity,
                 TistoryResDto.class);
 
+//        TistoryResDto response = restTemplate.getForObject(
+//            builder.toUriString(),
+//            TistoryResDto.class);
 
-
+        //위에서 받은 posts를 아래의 티스토리 엔티티에 매핑한다.
+        //방법은 정하기 나름. 스트림맵 or 포문
         Tistory tistory = Tistory.builder()
                 .postUrl("")
                 .date("")
                 .title("")
                 .build();
+        //위에서 만든 리스트형태 or 단일객체형태의 티스토리 엔티리를
+        //리포.save() or 리포.saveAll()을 통해 저장한다.
 
+        //저장 잘 했다라는 정도의 응답.
         return response;
     }
 }
