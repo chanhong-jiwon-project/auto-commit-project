@@ -1,9 +1,12 @@
 package com.til.autocommit.controller;
 
+import com.til.autocommit.dto.TistoryResDto;
 import com.til.autocommit.service.TistoryApi;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 
@@ -20,8 +23,10 @@ public class BoardController {
     }
 
     @GetMapping(value = "/tistory")
-    public String tistory() throws IOException {
-        System.out.println(tistoryApi.tistoryApiResult());
-        return "/";
+    @ResponseBody
+    public HttpEntity<TistoryResDto> tistory() throws IOException {
+//        System.out.println(tistoryApi.tistoryApiResult());
+        HttpEntity<TistoryResDto> tistoryResDtoHttpEntity = tistoryApi.tistoryApiResult();
+        return tistoryResDtoHttpEntity;
     }
 }

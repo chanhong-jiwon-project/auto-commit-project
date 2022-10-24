@@ -1,8 +1,8 @@
 package com.til.autocommit.service;
 
 import com.til.autocommit.domain.Tistory;
+import com.til.autocommit.dto.TistoryResDto;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -31,13 +31,13 @@ public class TistoryApi {
 
     //빈등록하면서 설정 추가 가능
     //config 파일 따로 만들어서 컨피그레이션 어노테이션 걸고 빈 등록 하면 어플리케이션 실행 시 자동 컨피그 되니까 컨피그 파일 따로 만들기.
-    @Bean
-    public RestTemplate getRestTemplate(){
-        return new RestTemplate();
-    }
+//    @Bean
+//    public RestTemplate getRestTemplate(){
+//        return new RestTemplate();
+//    }
 
     //api 호출
-    public String tistoryApiResult () throws IOException {
+    public HttpEntity<TistoryResDto> tistoryApiResult () throws IOException {
         StringBuilder result = new StringBuilder();
 
         String connectUrl = TISTORY_URL;
@@ -58,12 +58,20 @@ public class TistoryApi {
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
         RestTemplate restTemplate = new RestTemplate();
-
-        HttpEntity<String> response = restTemplate.exchange(
+        //꿀꿀꿀꿀꿀꿀꿀꿀 -oo-
+//        HttpEntity<Map> response = restTemplate.exchange(
+//                builder.toUriString(),
+//                HttpMethod.GET,
+//                entity,
+//                Map.class);
+//
+        HttpEntity<TistoryResDto> response = restTemplate.exchange(
                 builder.toUriString(),
                 HttpMethod.GET,
                 entity,
-                String.class);
+                TistoryResDto.class);
+
+
 
         Tistory tistory = Tistory.builder()
                 .postUrl("")
@@ -71,6 +79,6 @@ public class TistoryApi {
                 .title("")
                 .build();
 
-        return response.toString();
+        return response;
     }
 }

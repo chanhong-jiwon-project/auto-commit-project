@@ -1,13 +1,14 @@
 package com.til.autocommit.domain;
 
 import com.sun.istack.NotNull;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Builder
+//@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 // 잔소리 안 하겠다. 레벨에 따라서 다른데 생성자를 통해서만 이 클래스를 이용할 수 있게 만들겠다.
 public class Tistory {
@@ -17,6 +18,7 @@ public class Tistory {
     // 이 아이디를 디비에 인서트 될 때 자동생성 하겠다.
     private Long id;
 
+    private String name;
     private String title;
     private String date;
 
@@ -24,9 +26,10 @@ public class Tistory {
     private String postUrl;
 
     @Builder
-    public Tistory(Long id, String title, String date, String postUrl) {
+    public Tistory(Long id, String name, String title, String date, String postUrl) {
         //test 용
         this.id = id;
+        this.name = name;
         this.title = title;
         this.date = date;
         this.postUrl = postUrl;
