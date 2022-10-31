@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TistoryRepository extends JpaRepository<Tistory, Long> {
     List<Tistory> findAllByName(String name);
-
+    Tistory save(Tistory tistory);
 }

@@ -1,5 +1,6 @@
 package com.til.autocommit.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,8 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 public class TistoryResDto {
 
-    //응답 item
-    //https://tistory.github.io/document-tistory-apis/apis/v1/post/list.html
+    // 응답 item
+    // https://tistory.github.io/document-tistory-apis/apis/v1/post/list.html
     private InnerTistory tistory;
 
     @Getter
@@ -37,4 +38,8 @@ public class TistoryResDto {
         }
     }
 
+    @Builder
+    public TistoryResDto(InnerTistory tistory) {
+        this.tistory = tistory;
+    }
 }

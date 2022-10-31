@@ -7,4 +7,6 @@ public class TistoryReqDto {
     String name;
     String url;
     String type;
+    String title;
+    String date;
 }
