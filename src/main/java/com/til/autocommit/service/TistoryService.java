@@ -1,14 +1,12 @@
 package com.til.autocommit.service;
 
 import com.til.autocommit.domain.Tistory;
-import com.til.autocommit.dto.TistoryResDto;
 import com.til.autocommit.repository.TistoryRepository;
 import com.til.autocommit.dto.TistoryToGithubReqDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +16,6 @@ public class TistoryService {
     private final TistoryRepository tistoryRepository;
 
     public ResponseEntity<?> searchTistoryList(String name) {
-        List<TistoryResDto> tistoryDto = new ArrayList<>();
         List<Tistory> tistorys = tistoryRepository.findAllByName(name);
 
         List<TistoryToGithubReqDto> collect = tistorys.stream()
