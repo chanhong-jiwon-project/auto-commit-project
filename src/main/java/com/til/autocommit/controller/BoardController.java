@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class BoardController {
     @GetMapping(value = "/board")
-    public String broad(){
+    public String board(){
         System.out.println("index 호출성공");
         return "/";
     }
