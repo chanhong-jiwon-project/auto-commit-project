@@ -17,12 +17,11 @@ public class Tistory {
     @GeneratedValue
     // 이 아이디를 디비에 인서트 될 때 자동생성 하겠다.
     private Long id;
-<<<<<<< HEAD
-    @Column(name = "POST_TITLE")
-=======
 
+    @Column(name = "POST_NICKNAME")
     private String name;
->>>>>>> cf9b1c2775fe61866ffbd3a07940b4b0e64783e2
+
+    @Column(name = "POST_TITLE")
     private String title;
 
     @Column(name = "POST_DATE")
