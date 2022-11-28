@@ -13,22 +13,19 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Board {
+@AllArgsConstructor
+public class Comment {
     @Id
     @GeneratedValue()
     private Long idx;
 
-    @Column(name = "NICK_NAME")
-    private String name;
+    @Column(name = "TITLE_ID")
+    private Integer title_id;
 
-    @Column(name = "CREATE_ID")
-    private String id;
+    @Column(name = "TEXT")
+    private String text;
 
     @Column(name = "CREATE_DATE")
     private String date;
-
-    @Column(name = "TITLE")
-    private String title;
 }
