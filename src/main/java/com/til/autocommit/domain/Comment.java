@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -28,4 +25,13 @@ public class Comment {
 
     @Column(name = "CREATE_DATE")
     private String date;
+
+
+    @ManyToOne
+    @JoinColumn(name = "board_idx")
+    private Board board;
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 }

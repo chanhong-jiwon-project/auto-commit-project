@@ -1,11 +1,12 @@
 package com.til.autocommit.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 
+@Builder
 @Getter
-public class CommentReqDto {
-    Integer titleId;
+public class RecommentResDto {
+    Integer comment_id;
     String text;
     String date;
 }
-//꿀꾸룪루ㅜ꾸꿀룩ㄷ
